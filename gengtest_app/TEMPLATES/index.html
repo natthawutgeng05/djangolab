@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %}
+<h1>List of posts</h1>
+{% endblock %} {% block content %} {% if post_list %}
+<ul>
+  {% for post in post_list %}
+  <li>
+    {{ post.post_text }}: {{ post.pub_date }} , by {{post.author.first_name}}
+    {{post.author.last_name}}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No post</p>
+{% endif %} 
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block page-title %}
+	Welcome to Private Photo Stock Service
+{% endblock %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+		<div class="span12">
+		Welcome: {{ user.get_username }} <br> <br>
+		
+		Here is the list of photos you can download today <br><br>
+		<center>
+		{% for photo  in photo_list %}
+				
+				<img src="{{ photo.image.url }}"><br>
+				Author: {{ photo.author }}<br>
+				Upload date: {{ photo.upload_date }}<br>
+				<a href="{{ photo.image.url }}">Download</a>			
+				<br><hr>
+				
+		{% endfor %}
+		</center>
+		</div>
+		
+		
+			
+		
+	{% else %}
+		<div class="span12">
+			Welcome to our free photostock service website
+		</div>
+	{% endif %}
+{% endblock %}
+
+
