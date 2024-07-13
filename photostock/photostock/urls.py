@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from gallery import views
-from gallery.views import custom_logout_view
+
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.staticfiles.urls import static
@@ -30,7 +30,6 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('upload/', views.upload, name='upload'),
-    path('accounts/logout/', custom_logout_view, name='logout'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

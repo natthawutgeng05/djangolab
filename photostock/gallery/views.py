@@ -45,16 +45,12 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Authenticate the user with the credentials
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # Replace 'home' with your desired redirect URL
-            else:
-                # Handle the case where authentication fails
-                return render(request, 'signup.html', {'form': form, 'error': 'Authentication failed. Please try again.'})
+                return redirect(index) 
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
@@ -78,8 +74,3 @@ def upload(request):
      else:
           form = ImageUploadForm()
           return render(request, 'upload.html', {'form':form})
-     
-def custom_logout_view(request):
-    logout(request)
-    next_page = request.GET.get('next', '/')
-    return redirect(next_page)
